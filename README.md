@@ -16,7 +16,7 @@ If you find this code useful, please cite our [technical report]():
 @techreport{vai21dcase,
   title={{DCASE}: Find a title},
   author={Puy, Gilles and Jain, Himalaya and Bursuc, Andrei},
-  institution={{DCASE2020 Challenge}},
+  institution={{DCASE2021 Challenge}},
   year={2021},
 }
 ```
