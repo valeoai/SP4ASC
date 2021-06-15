@@ -6,12 +6,16 @@
 [*Andrei Bursuc*](https://abursuc.github.io/)  
 *valeo.ai, Paris, France*
 
+This repo contains the code to reproduce the results of the systems we submitted to the Task1a of the DCASE21 challenge 
+[link1](http://dcase.community/challenge2021/task-acoustic-scene-classification#subtask-a)[link2](https://arxiv.org/abs/2105.13734).
+
+
 If you find this code useful, please cite our [technical report]():
 ```
 @article{vai21dcase,
   title={{DCASE}: Find a title},
   author={Puy, Gilles and Jain, Himalaya and Bursuc, Andrei},
-  year={2021}
+  year={2021},
 }
 ```
 
@@ -113,8 +117,12 @@ flot = FLOT(nb_iter=3)
 
 
 ## Acknowledgements
-We are grateful to the authors of https://github.com/qiuqiangkong/audioset_tagging_cnn, where the original version of CNN6 without separable convolutions is available. 
-We are also to the authors of https://github.com/qiuqiangkong/torchlibrosa, which we use to compute the log-mel spectrograms.
+Our architecture is based on CNN6 which is described in [PANNs: Large-Scale Pretrained Audio Neural Networks for Audio Pattern Recognition](https://arxiv.org/abs/1912.10211).
+We modified the original CNN6 architecture by using separable convolutions and changing the number channels per layer to meet the complexity constraints of the DCASE21 Task1a challenge.
+
+The original implementation of CNN6 without separable convolutions is available [here](https://github.com/qiuqiangkong/audioset_tagging_cnn). We are grateful to the authors of this work.
+
+We are also grateful to the authors of [torchlibrosa](https://github.com/qiuqiangkong/torchlibrosa) which we use to compute the log-mel spectrograms.
 
 ## License
 The repository is released under the [Apache 2.0 license]

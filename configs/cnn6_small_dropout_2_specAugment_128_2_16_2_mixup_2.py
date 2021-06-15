@@ -10,5 +10,5 @@ config = {
     "max_epoch": 200,
     "weight_decay": 1e-5,
     "mixup_alpha": 0.2,
-    "out_dir": "/root/no_backup/dcase_challenge/final_submission/",
+    "out_dir": "./experiments/",
 }
