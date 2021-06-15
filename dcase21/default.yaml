@@ -1,0 +1,210 @@
+# Submission information
+submission:
+  # Submission label
+  # Label is used to index submissions.
+  # Generate your label following way to avoid
+  # overlapping codes among submissions:
+  # [Last name of corresponding author]_[Abbreviation of institute of the corresponding author]_task[task number]_[index number of your submission (1-4)]
+  label: xxx_xxx_task1a_1
+
+  # Submission name
+  # This name will be used in the results tables when space permits
+  name: xxx
+
+  # Submission name abbreviated
+  # This abbreviated name will be used in the results table when space is tight.
+  # Use maximum 10 characters.
+  abbreviation: xxx
+
+  # Authors of the submitted system. Mark authors in
+  # the order you want them to appear in submission lists.
+  # One of the authors has to be marked as corresponding author,
+  # this will be listed next to the submission in the results tables.
+  authors:
+    # First author
+    - lastname: Puy
+      firstname: Gilles
+      email: gilles.puy@valeo.com           # Contact email address
+      corresponding: true                         # Mark true for one of the authors
+
+      # Affiliation information for the author
+      affiliation:
+        abbreviation: vai
+        institute: valeo.ai
+        location: Paris, France
+
+    # Second author
+    - lastname: Jain
+      firstname: Himalaya
+      email: himalaya.jain@valeo.com                # Contact email address
+
+      # Affiliation information for the author
+      affiliation:
+        abbreviation: vai
+        institute: valeo.ai
+        location: Paris, France
+
+    # Third author
+    - lastname: Bursuc
+      firstname: Andrei
+      email: andrei.bursuc@valeo.com
+
+      # Affiliation information for the author
+      affiliation:
+        abbreviation: vai
+        institute: valeo.ai
+        location: Paris, France
+
+
+# System information
+system:
+  # System description, meta data provided here will be used to do
+  # meta analysis of the submitted system.
+  # Use general level tags, when possible use the tags provided in comments.
+  # If information field is not applicable to the system, use "!!null".
+  description:
+
+    # Audio input / sampling rate
+    # e.g. 16kHz, 22.05kHz, 44.1kHz, 48.0kHz
+    input_sampling_rate: 44.1kHz
+
+    # Acoustic representation
+    # one or multiple labels, e.g. MFCC, log-mel energies, spectrogram, CQT, raw waveform, ...
+    acoustic_features: log-mel energies
+
+    # Embeddings
+    # e.g. VGGish, OpenL3, ...
+    embeddings: !!null
+
+    # Data augmentation methods
+    # e.g. mixup, time stretching, block mixing, pitch shifting, ...
+    data_augmentation: SpecAugment
+
+    # Machine learning
+    # In case using ensemble methods, please specify all methods used (comma separated list).
+    # one or multiple, e.g. GMM, HMM, SVM, MLP, CNN, RNN, CRNN, ResNet, ensemble, ...
+    machine_learning_method: CNN
+
+    # Ensemble method subsystem count
+    # In case ensemble method is not used, mark !!null.
+    # e.g. 2, 3, 4, 5, ...
+    ensemble_method_subsystem_count: 30
+
+    # Decision making methods
+    # e.g. average, majority vote, maximum likelihood, ...
+    decision_making: average
+
+    # External data usage method
+    # e.g. directly, embeddings, pre-trained model, ...
+    external_data_usage: None
+
+    # Method for handling the complexity restrictions
+    # e.g. weight quantization, sparsity, ...
+    complexity_management: weight quantization
+
+  # System complexity, meta data provided here will be used to evaluate
+  # submitted systems from the computational load perspective.
+  complexity:
+    # Total amount of parameters used in the acoustic model.
+    # For neural networks, this information is usually given before training process
+    # in the network summary.
+    # For other than neural networks, if parameter count information is not directly
+    # available, try estimating the count as accurately as possible.
+    # In case of ensemble approaches, add up parameters for all subsystems.
+    # In case embeddings are used, add up parameter count of the embedding
+    # extraction networks and classification network
+    # Use numerical value (do not use comma for thousands-separator).
+    total_parameters: 0
+
+    # Total amount of non-zero parameters in the acoustic model.
+    # Calculated with same principles as "total_parameters".
+    # Use numerical value (do not use comma for thousands-separator).
+    total_parameters_non_zero: 0
+
+    # Model size calculated as instructed in task description page.
+    # Use numerical value, unit is KB
+    model_size: 0.0 # KB
+
+  # List of external datasets used in the submission.
+  # Development dataset is used here only as example, list only external datasets
+  external_datasets: ''
+
+  # URL to the source code of the system [optional]
+  source_code: ''
+
+# System results
+results:
+  development_dataset:
+    # System results for development dataset with provided the cross-validation setup.
+    # Full results are not mandatory, however, they are highly recommended
+    # as they are needed for through analysis of the challenge submissions.
+    # If you are unable to provide all results, also incomplete
+    # results can be reported.
+
+    # Overall metrics
+    overall:
+      logloss: !!null
+      accuracy: !!null    # mean of class-wise accuracies
+
+    # Class-wise metrics
+    class_wise:
+      airport:
+        logloss: !!null
+        accuracy: !!null
+      bus:
+        logloss: !!null
+        accuracy: !!null
+      metro:
+        logloss: !!null
+        accuracy: !!null
+      metro_station:
+        logloss: !!null
+        accuracy: !!null
+      park:
+        logloss: !!null
+        accuracy: !!null
+      public_square:
+        logloss: !!null
+        accuracy: !!null
+      shopping_mall:
+        logloss: !!null
+        accuracy: !!null
+      street_pedestrian:
+        logloss: !!null
+        accuracy: !!null
+      street_traffic:
+        logloss: !!null
+        accuracy: !!null
+      tram:
+        logloss: !!null
+        accuracy: !!null
+
+    # Device-wise
+    device_wise:
+      a:
+        logloss: !!null
+        accuracy: !!null
+      b:
+        logloss: !!null
+        accuracy: !!null
+      c:
+        logloss: !!null
+        accuracy: !!null
+      s1:
+        logloss: !!null
+        accuracy: !!null
+      s2:
+        logloss: !!null
+        accuracy: !!null
+      s3:
+        logloss: !!null
+        accuracy: !!null
+      s4:
+        logloss: !!null
+        accuracy: !!null
+      s5:
+        logloss: !!null
+        accuracy: !!null
+      s6:
+        logloss: !!null
+        accuracy: !!null

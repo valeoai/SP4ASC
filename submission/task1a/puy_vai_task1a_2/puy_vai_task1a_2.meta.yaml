@@ -1,0 +1,108 @@
+results:
+  development_dataset:
+    class_wise:
+      airport:
+        accuracy: 52.02702702702703
+        logloss: 1.191263932619099
+      bus:
+        accuracy: 67.003367003367
+        logloss: 0.7978632573057154
+      metro:
+        accuracy: 61.95286195286195
+        logloss: 0.918825213025992
+      metro_station:
+        accuracy: 66.32996632996633
+        logloss: 0.96858873899308
+      park:
+        accuracy: 86.53198653198653
+        logloss: 0.47544564821133944
+      public_square:
+        accuracy: 57.23905723905723
+        logloss: 1.1950474060218945
+      shopping_mall:
+        accuracy: 59.59595959595959
+        logloss: 1.1085621827040557
+      street_pedestrian:
+        accuracy: 46.801346801346796
+        logloss: 1.4200915806622618
+      street_traffic:
+        accuracy: 85.18518518518519
+        logloss: 0.5140490090350623
+      tram:
+        accuracy: 79.05405405405406
+        logloss: 0.6780438923018959
+    device_wise:
+      a:
+        accuracy: 76.06060606060606
+        logloss: 0.6431914269338559
+      b:
+        accuracy: 67.47720364741642
+        logloss: 0.8495985980946741
+      c:
+        accuracy: 72.3404255319149
+        logloss: 0.7411825133878228
+      s1:
+        accuracy: 61.81818181818181
+        logloss: 1.027132196639749
+      s2:
+        accuracy: 67.57575757575758
+        logloss: 0.9263507501532634
+      s3:
+        accuracy: 70.3030303030303
+        logloss: 0.840778377573147
+      s4:
+        accuracy: 63.33333333333333
+        logloss: 1.0724578214136824
+      s5:
+        accuracy: 62.727272727272734
+        logloss: 0.979028349728888
+      s6:
+        accuracy: 53.939393939393945
+        logloss: 1.2604387205235208
+    overall:
+      accuracy: 66.17208117208118
+      logloss: 0.9267780860880395
+submission:
+  abbreviation: ce_mu_tta
+  authors:
+  - affiliation:
+      abbreviation: vai
+      institute: valeo.ai
+      location: Paris, France
+    corresponding: true
+    email: gilles.puy@valeo.com
+    firstname: Gilles
+    lastname: Puy
+  - affiliation:
+      abbreviation: vai
+      institute: valeo.ai
+      location: Paris, France
+    email: himalaya.jain@valeo.com
+    firstname: Himalaya
+    lastname: Jain
+  - affiliation:
+      abbreviation: vai
+      institute: valeo.ai
+      location: Paris, France
+    email: andrei.bursuc@valeo.com
+    firstname: Andrei
+    lastname: Bursuc
+  label: puy_vai_task1a_2
+  name: ce_mu_tta
+system:
+  complexity:
+    model_size: 122.01953125
+    total_parameters: 62474
+    total_parameters_non_zero: 62474
+  description:
+    acoustic_features: log-mel energies
+    complexity_management: weight quantization
+    data_augmentation: SpecAugment, mixup
+    decision_making: average
+    embeddings: null
+    ensemble_method_subsystem_count: 30
+    external_data_usage: None
+    input_sampling_rate: 44.1kHz
+    machine_learning_method: CNN
+  external_datasets: ''
+  source_code: ''
