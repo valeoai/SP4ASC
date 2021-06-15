@@ -1,10 +1,10 @@
 import argparse
 import os
 import yaml
-from dcase21.datasets.dcase import DCaseDataset
-from dcase21.models import get_net
-from dcase21.models.cnns import LogMelSpectrogram
-from dcase21.testing import TestManager
+from sp4asc.datasets.dcase import DCaseDataset
+from sp4asc.models import get_net
+from sp4asc.models.cnns import LogMelSpectrogram
+from sp4asc.testing import TestManager
 
 
 if __name__ == "__main__":

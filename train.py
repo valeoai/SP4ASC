@@ -3,10 +3,10 @@ import torch
 import tarfile
 import argparse
 from torch.utils.data import DataLoader
-from dcase21.datasets.dcase import DCaseDataset
-from dcase21.models import get_net
-from dcase21.models.cnns import LogMelSpectrogram
-from dcase21.training import TrainingManager
+from sp4asc.datasets.dcase import DCaseDataset
+from sp4asc.models import get_net
+from sp4asc.models.cnns import LogMelSpectrogram
+from sp4asc.training import TrainingManager
 
 
 def make_tarfile(output_filename, source_dir):

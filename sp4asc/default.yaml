@@ -22,39 +22,16 @@ submission:
   # this will be listed next to the submission in the results tables.
   authors:
     # First author
-    - lastname: Puy
-      firstname: Gilles
-      email: gilles.puy@valeo.com           # Contact email address
+    - lastname: xxx
+      firstname: xxx
+      email: xxx           # Contact email address
       corresponding: true                         # Mark true for one of the authors
 
       # Affiliation information for the author
       affiliation:
-        abbreviation: vai
-        institute: valeo.ai
-        location: Paris, France
-
-    # Second author
-    - lastname: Jain
-      firstname: Himalaya
-      email: himalaya.jain@valeo.com                # Contact email address
-
-      # Affiliation information for the author
-      affiliation:
-        abbreviation: vai
-        institute: valeo.ai
-        location: Paris, France
-
-    # Third author
-    - lastname: Bursuc
-      firstname: Andrei
-      email: andrei.bursuc@valeo.com
-
-      # Affiliation information for the author
-      affiliation:
-        abbreviation: vai
-        institute: valeo.ai
-        location: Paris, France
-
+        abbreviation: xxx
+        institute: xxx
+        location: xxx
 
 # System information
 system:
