@@ -14,19 +14,19 @@ if __name__ == "__main__":
     parser.add_argument(
         "--config",
         type=str,
-        default="configs/cnn6_small_dropout_2_specAugment_128_2_32_2.py",
+        default="configs/example.py",
         help="Path to config file describing training parameters",
     )
     parser.add_argument(
         "--out_name",
         type=str,
-        default="puy_vai_task1a_1",
+        default="result_task1a_1",
         help="Basename for file with results to submit",
     )
     parser.add_argument(
         "--sys_name",
         type=str,
-        default="CE_TTA",
+        default="example",
         help="System_name",
     )
     parser.add_argument(

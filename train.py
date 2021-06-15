@@ -27,7 +27,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--config",
         type=str,
-        default="configs/cnn6_small_dropout_2_specAugment_128_2_32_2.py",
+        default="configs/example.py",
         help="Path to config file describing training parameters",
     )
     args = parser.parse_args()

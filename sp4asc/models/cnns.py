@@ -1,7 +1,6 @@
 """
-This original model, named Cnn6_Orig here, can be found in
-https://github.com/qiuqiangkong/audioset_tagging_cnn/blob/master/pytorch/models.py
-where it is named Cnn6.
+This original CNN6 model without separable convolution can be found in
+https://github.com/qiuqiangkong/audioset_tagging_cnn/blob/master/pytorch/models.py.
 """
 import torch
 import torch.nn as nn

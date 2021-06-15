@@ -1,4 +1,4 @@
-## DCASE21: Find a title
+## Low-complexity acoustic scene classification (DCASE21 Challenge)
 
 [**Find a title**]()  
 [*Gilles Puy*](https://sites.google.com/site/puygilles/home),
@@ -6,15 +6,17 @@
 [*Andrei Bursuc*](https://abursuc.github.io/)  
 *valeo.ai, Paris, France*
 
-This repo contains the code to reproduce the results of the systems we submitted to the Task1a of the DCASE21 challenge 
-[link1](http://dcase.community/challenge2021/task-acoustic-scene-classification#subtask-a)[link2](https://arxiv.org/abs/2105.13734).
+This repo contains the code to reproduce the results of the systems we submitted to the Task1a of the DCASE21 challenge. 
+Please refer to [link1](http://dcase.community/challenge2021/task-acoustic-scene-classification#subtask-a) and 
+[link2](https://arxiv.org/abs/2105.13734) for more information about the challenge.
 
 
 If you find this code useful, please cite our [technical report]():
 ```
-@article{vai21dcase,
+@techreport{vai21dcase,
   title={{DCASE}: Find a title},
   author={Puy, Gilles and Jain, Himalaya and Bursuc, Andrei},
+  institution={{DCASE2020 Challenge}},
   year={2021},
 }
 ```
@@ -64,6 +66,7 @@ contains the following sub-directories:
 
 If the dataset are stored elsewhere on your system, you can create soft links as follows:
 ```bash
+$ mkdir /path/to/SP4ASC/data/
 $ ln -s /path/to/TAU-urban-acoustic-scenes-2020-mobile-development/ /path/to/SP4ASC/data/
 $ ln -s /path/to/TAU-urban-acoustic-scenes-2021-mobile-evaluation/ /path/to/SP4ASC/data/
 ```
@@ -73,46 +76,82 @@ $ ln -s /path/to/TAU-urban-acoustic-scenes-2021-mobile-evaluation/ /path/to/SP4A
 
 ### Testing
 
-A trained model is available in ```/path/to/SP4ASC/trained_models/```.
+Our trained models are available in ```/path/to/SP4ASC/trained_models/```.
 
-To evaluate this model, type:
+1. The results of the model trained with cross entropy and without mixup can be reproduced by typing:
 ```bash
 $ cd /path/to/SP4ASC/
-$ python test.py
+$ python test.py --config configs/cnn6_small_dropout_2_specAugment_128_2_32_2.py --nb_aug 30
 ```
 
-This model was trained and saved using 32-bit floats. 
-This model is compressed in `test.py` by combining all convolutional and batchnorm layers to reach 62'474 parameters
+2. The results of the model trained with cross entropy and mixup can be reproduced by typing:
+```bash
+$ cd /path/to/SP4ASC/
+$ python test.py --config configs/cnn6_small_dropout_2_specAugment_128_2_16_2_mixup_2.py --nb_aug 30
+```
+
+These models were trained and saved using 32-bit floats. Each model is compressed in `test.py` by combining all convolutional and batchnorm layers to reach 62'474 parameters
 and quantized using 16-bit floats. 
 
 ### Training
 
-A script to train with cross-entropy and mixup (or not) is available at ```/path/to/SP4ASC/train.py```.
-This script should be called with an associates config file. We provide in ```/path/to/SP4ASC/configs``` the config files used to obtained the models in ```/path/to/SP4ASC/trained_models/```.
+A script to train a model with cross-entropy and mixup is available at ```/path/to/SP4ASC/train.py```.
+This script should be called with a config file that sets the training parameters. An example of such a file is given ```configs/example.py```.
 
-For example, one can train a model by typing
+One can train a model by typing:
 ```bash
 $ cd /path/to/SP4ASC/
-$ python train.py --config configs/cnn6...
+$ python train.py --config configs/example.py
 ```
 
-Once trained, this model can be evaluated by typing
+Once trained, this model can be evaluated by typing:
 ```bash
 $ cd /path/to/SP4ASC/
-$ python test.py --config configs/cnn6...
+$ python test.py --config configs/example.py --nb_aug 10
 ```
+
+The argument `XX` after ```--nb_aug``` defines the number of augmentations done at test time. Set `XX` to `0` to remove all augmentations.
+
+
+### Retraining the provided models
+
+The training parameters used for each of the provided models can be found in ```/path/to/SP4ASC/configs```.
+
+1. The model trained with cross entropy and without mixup can be retrained by typing
+```bash
+$ cd /path/to/SP4ASC/
+$ python train.py --config configs/cnn6_small_dropout_2_specAugment_128_2_32_2.py
+```
+**BEWARE:** *This will erase the provided checkpoint in the directory 
+```/path/to/SP4ASC/trained_model/configs.cnn6_small_dropout_2_specAugment_128_2_32_2```!
+This can be avoided by making a copy of `configs/cnn6_small_dropout_2_specAugment_128_2_32_2.py`, 
+editing the field `-out_dir` in the copied file, and using this new file after the argument `--config`.*
+
+2. The model trained with cross entropy and with mixup can be retrained by typing
+```bash
+$ cd /path/to/SP4ASC/
+$ python train.py --config configs/cnn6_small_dropout_2_specAugment_128_2_16_2_mixup_2.py
+```
+**BEWARE:** *This will erase the provided checkpoint in the directory 
+```/path/to/SP4ASC/trained_model/configs.cnn6_small_dropout_2_specAugment_128_2_16_2_mixup_2.py```!
+This can be avoided by making a copy of `configs/cnn6_small_dropout_2_specAugment_128_2_16_2_mixup_2.py` and editing the field `-out_dir` in the copied file, and using this new file after 
+the argument `--config`.*
+
 
 ### Using sp4asc model
 
 You can reuse sp4asc in your own project by first installing this package (see above).
-
-Then import the model by typing
+Then, import the model by typing
 ```python
-from sp4asc.models import cnn6_ours_60k
+from sp4asc.models import Cnn6_60k
 ```
 
+The constructor takes two arguments `dropout`, a scalar indicating the dropout rate, and 
+`spec_aug`, a list of the form `[T, n, F, m]`, where `T` is the size of the mask on the time axis,
+`n` the number of mask of the time axis, `F` the size of the mask on the frequency axis, and `m` 
+the number of masks on the frequency axis. 
 ```python
-flot = FLOT(nb_iter=3)
+net = Cnn6_60k(dropout=0.2, spec_aug=[128, 2, 16, 2])
 ```
 
 
@@ -120,9 +159,10 @@ flot = FLOT(nb_iter=3)
 Our architecture is based on CNN6 which is described in [PANNs: Large-Scale Pretrained Audio Neural Networks for Audio Pattern Recognition](https://arxiv.org/abs/1912.10211).
 We modified the original CNN6 architecture by using separable convolutions and changing the number channels per layer to meet the complexity constraints of the DCASE21 Task1a challenge.
 
-The original implementation of CNN6 without separable convolutions is available [here](https://github.com/qiuqiangkong/audioset_tagging_cnn). We are grateful to the authors of this work.
+The original implementation of CNN6 without separable convolutions is available [here](https://github.com/qiuqiangkong/audioset_tagging_cnn). 
+We are grateful to the authors for providing this implementation.
 
 We are also grateful to the authors of [torchlibrosa](https://github.com/qiuqiangkong/torchlibrosa) which we use to compute the log-mel spectrograms.
 
 ## License
-The repository is released under the [Apache 2.0 license]
+The repository is released under the [Apache 2.0 license](./LICENSE)
