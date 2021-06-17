@@ -1,6 +1,6 @@
 ## Low-complexity acoustic scene classification (DCASE21 Challenge)
 
-[**Find a title**]()  
+[**SEPARABLE CONVOLUTIONS AND TEST-TIME AUGMENTATIONS FOR LOW-COMPLEXITY AND CALIBRATED ACOUSTIC SCENE CLASSIFICATION**]()  
 [*Gilles Puy*](https://sites.google.com/site/puygilles/home),
 [*Himalaya Jain*](https://himalayajain.github.io/),
 [*Andrei Bursuc*](https://abursuc.github.io/)  
