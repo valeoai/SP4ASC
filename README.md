@@ -140,7 +140,7 @@ $ python train.py --config configs/cnn6_small_dropout_2_specAugment_128_2_16_2_m
 This can be avoided by making a copy of `configs/cnn6_small_dropout_2_specAugment_128_2_16_2_mixup_2.py` and editing the field `-out_dir` in the copied file, and using this new file after 
 the argument `--config`.*
 
-3. The script to train  the model trained with focal loss will be made available.
+3. The pre-trained model with focal loss will be made available.
 
 ### Using sp4asc model
 
