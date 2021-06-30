@@ -1,6 +1,6 @@
-## Low-complexity acoustic scene classification (DCASE21 Challenge)
+## Separable convolutions and test-time augmentations for low-complexity and calibrated acoustic scene classification (DCASE21 Challenge)
 
-[**Find a title**]()  
+[**Separable convolutions and test-time augmentations for low-complexity and calibrated acoustic scene classification**]()  
 [*Gilles Puy*](https://sites.google.com/site/puygilles/home),
 [*Himalaya Jain*](https://himalayajain.github.io/),
 [*Andrei Bursuc*](https://abursuc.github.io/)  
@@ -14,7 +14,7 @@ Please refer to [link1](http://dcase.community/challenge2021/task-acoustic-scene
 If you find this code useful, please cite our [technical report]():
 ```
 @techreport{vai21dcase,
-  title={{DCASE}: Find a title},
+  title={Separable convolutions and test-time augmentations for low-complexity and calibrated acoustic scene classification},
   author={Puy, Gilles and Jain, Himalaya and Bursuc, Andrei},
   institution={{DCASE2021 Challenge}},
   year={2021},
@@ -90,6 +90,8 @@ $ cd /path/to/SP4ASC/
 $ python test.py --config configs/cnn6_small_dropout_2_specAugment_128_2_16_2_mixup_2.py --nb_aug 30
 ```
 
+3. The results of the model trained with focal loss will be made available.
+
 These models were trained and saved using 32-bit floats. Each model is compressed in `test.py` by combining all convolutional and batchnorm layers to reach 62'474 parameters
 and quantized using 16-bit floats. 
 
@@ -137,6 +139,7 @@ $ python train.py --config configs/cnn6_small_dropout_2_specAugment_128_2_16_2_m
 This can be avoided by making a copy of `configs/cnn6_small_dropout_2_specAugment_128_2_16_2_mixup_2.py` and editing the field `-out_dir` in the copied file, and using this new file after 
 the argument `--config`.*
 
+3. The script to train  the model trained with focal loss will be made available.
 
 ### Using sp4asc model
 
