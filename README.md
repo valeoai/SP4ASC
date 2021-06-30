@@ -1,6 +1,6 @@
 ## Separable convolutions and test-time augmentations for low-complexity and calibrated acoustic scene classification (DCASE21 Challenge)
 
-[**Separable convolutions and test-time augmentations for low-complexity and calibrated acoustic scene classification**]()  
+[**SEPARABLE CONVOLUTIONS AND TEST-TIME AUGMENTATIONS FOR LOW-COMPLEXITY AND CALIBRATED ACOUSTIC SCENE CLASSIFICATION**]() 
 [*Gilles Puy*](https://sites.google.com/site/puygilles/home),
 [*Himalaya Jain*](https://himalayajain.github.io/),
 [*Andrei Bursuc*](https://abursuc.github.io/)  
