@@ -101,14 +101,14 @@ Note that we have retrained this model since the submission to the challenge. Th
 rank the systems in the challenge) is unchanged compared to the submitted model. We observe a slight variation 
 for the top-1 accuracy.
 
-The performance without test-time augmentations (`--nb_aug 0`) are:
+The scores without test-time augmentation (`--nb_aug 0`) are:
 
 |                  |  Log loss  |  Accuracy   |
 |---               |---         |---          |
 |Model submitted   |    0.95    |  66.7       |               
 |This model        |    0.94    |  67.1       |
 
-The performance without test-time augmentations (`--nb_aug 30`) are:
+The scores with test-time augmentations (`--nb_aug 30`) are:
 
 |                  |  Log loss  |  Accuracy   |
 |---               |---         |---          |
