@@ -6,11 +6,33 @@ from torch.utils.tensorboard import SummaryWriter
 
 class CELoss:
     def __init__(self, nb_classes):
+        self.type = 'ce'
         self.nb_classes = nb_classes
 
     def __call__(self, pred, target):
         pred = F.log_softmax(pred, dim=1)
         return -(pred * target).sum(1).mean()
+
+
+class FocalLoss:
+    def __init__(self, gamma=1.):
+        super(FocalLoss, self).__init__()
+        self.type = 'focal'
+        self.gamma = gamma
+
+    def __call__(self, input, target):
+        # One hot vector to class index
+        target = target.max(1)[1]
+        target = target.view(-1, 1)
+
+        # Focal loss
+        logpt = F.log_softmax(input, dim=1)
+        logpt = logpt.gather(1, target)
+        logpt = logpt.view(-1)
+        pt = logpt.exp()
+        loss = -1. * (1 - pt)**self.gamma * logpt
+
+        return loss.sum() / len(input)
 
 
 class MixUp:
@@ -61,6 +83,7 @@ class TrainingManager:
         scheduler,
         config,
         path_to_ckpt,
+        loss='ce',
         nb_classes=10,
     ):
 
@@ -79,7 +102,10 @@ class TrainingManager:
         self.spectrogram = spectrogram.to(self.dev).eval()
 
         # Mixup and loss
-        self.loss = CELoss(nb_classes=nb_classes)
+        if loss == 'ce':
+            self.loss = CELoss(nb_classes=nb_classes)
+        else:
+            self.loss = FocalLoss()
         self.mixup = MixUp(alpha=config["mixup_alpha"], nb_classes=nb_classes)
 
         # Checkpoints

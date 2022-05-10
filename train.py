@@ -107,5 +107,6 @@ if __name__ == "__main__":
         scheduler,
         config,
         path2log,
+        loss=config["loss"] if "loss" in config.keys() else "ce",
     )
     mng.train()

@@ -77,7 +77,8 @@ $ ln -s /path/to/TAU-urban-acoustic-scenes-2021-mobile-evaluation/ /path/to/SP4A
 
 ### Testing
 
-Our trained models are available in ```/path/to/SP4ASC/trained_models/```.
+Our trained models are available in ```/path/to/SP4ASC/trained_models/```. These models were trained and saved using 32-bit floats. Each model is compressed in `test.py` by combining all convolutional and batchnorm layers to reach 62'474 parameters
+and quantized using 16-bit floats. 
 
 1. The results of the model trained with cross entropy and without mixup can be reproduced by typing:
 ```bash
@@ -91,10 +92,30 @@ $ cd /path/to/SP4ASC/
 $ python test.py --config configs/cnn6_small_dropout_2_specAugment_128_2_16_2_mixup_2.py --nb_aug 30
 ```
 
-3. The results of the model trained with focal loss will be made available.
+3. The results of the model trained with focal loss can be obtained by typing:
+```
+$ cd /path/to/SP4ASC/
+$ python test.py --config configs/cnn6_small_dropout_2_specAugment_128_2_32_2_focal_loss.py --nb_aug 30
+```
+Note that we have retrained this model since the submission to the challenge. The log loss (metric used to 
+rank the systems in the challenge) is unchanged compared to the submitted model. We observe a slight variation 
+for the top-1 accuracy.
 
-These models were trained and saved using 32-bit floats. Each model is compressed in `test.py` by combining all convolutional and batchnorm layers to reach 62'474 parameters
-and quantized using 16-bit floats. 
+The performance without test-time augmentations (`--nb_aug 0`) are:
+
+|                  |  Log loss  |  Accuracy   |
+|---               |---         |---          |
+|Model submitted   |    0.95    |  66.7       |               
+|This model        |    0.94    |  67.1       |
+
+The performance without test-time augmentations (`--nb_aug 30`) are:
+
+|                  |  Log loss  |  Accuracy   |
+|---               |---         |---          |
+|Model submitted   |    0.88    |  68.3       |               
+|This model        |    0.89    |  67.0       |
+
+
 
 ### Training
 
@@ -120,27 +141,29 @@ The argument `XX` after ```--nb_aug``` defines the number of augmentations done 
 
 The training parameters used for each of the provided models can be found in ```/path/to/SP4ASC/configs```.
 
+**Note:** *Retraining the model will erase the provided checkpoint in the directory 
+```/path/to/SP4ASC/trained_model/.``` You can avoid this behaviour by copying the configs files in 
+`configs/,` editing the field `-out_dir` in the copied file, and using this new file as an argument of 
+`--config` below.*
+
 1. The model trained with cross entropy and without mixup can be retrained by typing
 ```bash
 $ cd /path/to/SP4ASC/
 $ python train.py --config configs/cnn6_small_dropout_2_specAugment_128_2_32_2.py
 ```
-**BEWARE:** *This will erase the provided checkpoint in the directory 
-```/path/to/SP4ASC/trained_model/configs.cnn6_small_dropout_2_specAugment_128_2_32_2```!
-This can be avoided by making a copy of `configs/cnn6_small_dropout_2_specAugment_128_2_32_2.py`, 
-editing the field `-out_dir` in the copied file, and using this new file after the argument `--config`.*
 
 2. The model trained with cross entropy and with mixup can be retrained by typing
 ```bash
 $ cd /path/to/SP4ASC/
 $ python train.py --config configs/cnn6_small_dropout_2_specAugment_128_2_16_2_mixup_2.py
 ```
-**BEWARE:** *This will erase the provided checkpoint in the directory 
-```/path/to/SP4ASC/trained_model/configs.cnn6_small_dropout_2_specAugment_128_2_16_2_mixup_2.py```!
-This can be avoided by making a copy of `configs/cnn6_small_dropout_2_specAugment_128_2_16_2_mixup_2.py` and editing the field `-out_dir` in the copied file, and using this new file after 
-the argument `--config`.*
 
-3. The pre-trained model with focal loss will be made available.
+3. The model trained with the focal loss can be retrained by typing
+```bash
+$ cd /path/to/SP4ASC/
+$ python train.py --configs/cnn6_small_dropout_2_specAugment_128_2_32_2_focal_loss.py
+```
+
 
 ### Using sp4asc model
 
